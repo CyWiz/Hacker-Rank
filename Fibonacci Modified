@@ -1,0 +1,9 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+t1,t2,n=map(long,raw_input().split())
+#x=long(x.split())
+for i in range(2,n):
+    t=t2
+    t2=t1+t2*t2
+    t1=t
+    
+print t2
