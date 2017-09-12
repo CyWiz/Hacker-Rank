@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int n,i,j,min=99999,count=0;
+    long int a[200000],temp;
+    long int b[200000],c[200000];
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%ld",&temp);
+        if(i==0)
+            a[i]=temp;
+        else
+        {j=i-1;
+            while(j>=0 && temp<a[j])
+            {
+              a[j+1]=a[j];j--;  
+            }
+            a[j+1]=temp;
+        }
+    }
+    for(i=0;i<n-1;i++)
+    {
+        if((a[i+1]-a[i])<min)
+        {min=a[i+1]-a[i];
+         b[0]=a[i];
+         c[0]=a[i+1];
+         count=1;
+        }
+        else if((a[i+1]-a[i])==min)
+        {
+            b[count]=a[i];
+            c[count]=a[i+1];
+            count++;
+        }
+    }
+    i=0;
+    while(i<count)
+    {
+        printf("%ld %ld ",b[i],c[i]);i++;
+    }
+    return 0;
+}
