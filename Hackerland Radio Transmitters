@@ -1,0 +1,44 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int main(){
+    int n,temp,i,j,start,center,count=0; 
+    int k; 
+    scanf("%d %d",&n,&k);
+    int *x = malloc(sizeof(int) * n);
+    for(i = 0; i < n; i++){
+       scanf("%d",&temp);
+        if(i==0)
+            x[i]=temp;
+        else
+        {j=i-1;
+            while(j>=0 && temp<x[j])
+            {
+              x[j+1]=x[j];j--;  
+            }
+            x[j+1]=temp;
+        }
+    }
+    i=0;
+    while(i<n)
+    {start=x[i];
+    while(++i<n && x[i]<(start+k))
+        continue;
+    if(x[i]==start+k)
+        center=x[i];
+    else
+    {
+        center=x[i-1];
+        i--;
+    }
+    while(++i<n && x[i]<=(center+k))
+        continue;
+    count++;} 
+    printf("%d",count);
+        return 0;
+}
