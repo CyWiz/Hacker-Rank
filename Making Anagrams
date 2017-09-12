@@ -1,0 +1,31 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int makingAnagrams(char* s1, char* s2){
+    // Complete this function
+    int a1[26]={0},a2[26]={0},sum=0,i=0;
+    while(*s1)
+    {a1[(*s1-97)]+=1;s1++;}
+    while(*s2)
+    {a2[(*s2-97)]+=1;s2++;}
+    for(i=0;i<26;i++)
+    {
+        sum+=abs(a1[i]-a2[i]);
+    }
+    return sum;
+}
+
+int main() {
+    char* s1 = (char *)malloc(512000 * sizeof(char));
+    scanf("%s", s1);
+    char* s2 = (char *)malloc(512000 * sizeof(char));
+    scanf("%s", s2);
+    int result = makingAnagrams(s1, s2);
+    printf("%d\n", result);
+    return 0;
+}
