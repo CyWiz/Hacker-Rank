@@ -1,0 +1,23 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n,k=map(int,raw_input().split())
+a=[int(x) for x in raw_input().split()]
+
+i=0
+left=0
+right=0
+count=0
+
+while i<n:
+    right=min(n-1,i+k-1)
+    t=right
+    while t>=left and a[t]==0:
+        t-=1
+    if t< left:
+        count=-1
+        break
+    else:
+        count+=1
+        #left=t+k
+        left=t+1
+        i=t+k
+print count
