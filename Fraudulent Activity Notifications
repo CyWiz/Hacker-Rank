@@ -1,0 +1,41 @@
+#!/bin/python
+
+import sys
+import bisect
+from math import ceil
+
+def activityNotifications(array, d):
+    # Complete this function
+    d_array = []
+    notifs = 0
+
+    for index in xrange(d):
+        bisect.insort(d_array,array[index])
+
+    for index in xrange(d,n):
+
+        if d % 2 == 0:
+
+            first = d_array[len(d_array)/2]
+            second = d_array[len(d_array)/2 - 1]
+            median = (first+second)/2.0
+
+        else:
+            median = d_array[len(d_array)/2]
+            #print len(d_array)/2 , median
+
+        if array[index] >= 2*median:
+            notifs += 1
+        
+        to_remove = bisect.bisect(d_array, array[index - d]) - 1
+        d_array.pop(to_remove)
+        bisect.insort(d_array, array[index])
+
+    return notifs
+
+if __name__ == "__main__":
+    n, d = raw_input().strip().split(' ')
+    n, d = [int(n), int(d)]
+    expenditure = map(int, raw_input().strip().split(' '))
+    result = activityNotifications(expenditure, d)
+    print result
